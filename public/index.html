@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Photographer</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>AI Photographer Studio</h1>
+        <p>
+          Upload a photo, choose a creative direction, and let Gemini 2.7 Flash remix the shot
+          using NanoBanana's powerful image generation. Each template includes carefully crafted
+          instructions to keep your portraits consistent and production ready.
+        </p>
+      </header>
+
+      <section aria-labelledby="templates-heading">
+        <h2 id="templates-heading">Choose a template</h2>
+        <p>Select one of the pre-built looks. You can still add a custom prompt to fine-tune the result.</p>
+        <div class="templates-grid" id="templateGrid" role="list"></div>
+      </section>
+
+      <section aria-labelledby="upload-heading">
+        <h2 id="upload-heading">Upload &amp; Generate</h2>
+        <form id="generationForm">
+          <input type="hidden" name="templateId" id="templateInput" required />
+
+          <label for="imageInput">Upload a reference photo</label>
+          <input type="file" name="image" id="imageInput" accept="image/*" required />
+
+          <label for="promptInput">Custom creative direction (optional)</label>
+          <textarea id="promptInput" name="prompt" placeholder="e.g. Add golden hour lighting with soft lens flare."></textarea>
+
+          <button type="submit" id="generateButton">
+            <span>Generate portrait</span>
+          </button>
+
+          <div class="status-bar" id="statusBar" hidden>
+            <div class="spinner" aria-hidden="true"></div>
+            <span id="statusMessage">Generating with Gemini...</span>
+          </div>
+        </form>
+
+        <div class="result-panel" id="resultPanel" aria-live="polite">
+          <h2>Generation result</h2>
+          <p id="resultMeta"></p>
+          <img id="resultImage" alt="Generated portrait" />
+          <p id="resultNote"></p>
+        </div>
+      </section>
+    </main>
+
+    <script src="/script.js" type="module"></script>
+  </body>
+</html>
